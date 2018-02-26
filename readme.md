@@ -2,15 +2,11 @@ This module search for a line in data of all weeks.
 To use, call
 
 1. To use, call
-`multiple_line_search(data_path, lines_array, output_path, auto_filter_thresold, resolution, [selection_weeks])`
-	* data_path: the path that contains all weeks folder
-	* lines_array: [low(lower search bound), high(higher search bound), line(frequency of the line)]
-	* output_path: the folder where all the week folders locate in
-		- the output_path will be created
-		- the structure is output_path/\<weeks\>/\<figures\>
-	* auto_filter_thresold: automatically filters out irrelevant channels, details see channel.m
-	* resolution: the resolution of the line. This would require that all lines within a single `multiple_line_search()` call should have the same resolution.
-	* selected_weeks: optional argument. The weeks selected for search, as folder name.
+function multiple_line_search(data_path, search, lines, output_path)
+	* data_path: the path that contains all weeks folder (should be structured as weekfolder/"data"/matfiles)
+	* search: An object of the Search class containing information about the searching parameters, check Search.m for details.
+	* lines: An object of the line_array class containing information about the lines, check Line.m and line_array.m for details.
+	* output_path: the path of the output files. 
 2. hierarchical structure of the files: multiple_line_search -> line_search -> week_search -> channel -> output
 
-Details for those files are found in the in-file documents. They can be used for other types of searches
+Details for those files are found in the in-file documents. They can be used for other types of searches. Contact duo.tao.2017@gmail.com for help.

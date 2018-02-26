@@ -4,8 +4,10 @@ function week_search(data_path, search, line, output_path)
 	% search: configurations of this search (high / low /filter)
 	% line: parameters of the line (see the structure Comb)
 	% output_path: the folder where all the week folders locate in
-		% the output_path  be created
-		% the structure is output_path/<weeks>/<plots>
+	% the output_path  be created
+	% the structure is output_path/<weeks>/<plots>
+	% Duo Tao, 2/26/2018
+	
 	mkdir(output_path);
 	matFiles = dir(fullfile(data_path, '*.mat'));
 	disp(['working on week ', data_path]);

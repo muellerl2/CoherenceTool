@@ -4,8 +4,10 @@ function line_search(data_path, search, line, output_path)
 	% search: configurations of this search
 	% line: parameters of the line (see the structure Line)
 	% output_path: the folder where all the week folders locate in
-		% the output_path will be created
-		% the structure is output_path/<weeks>/<plots>
+	% the output_path will be created
+	% the structure is output_path/<weeks>/<plots>
+	% Duo Tao, 2/26/2018
+	
 	output_path = strcat(output_path, '/', line.run, '_', line.observatory, '_line_', num2str(line.line));
 	mkdir(output_path);
 	files = dir(data_path);

@@ -5,7 +5,8 @@ function output(channel_name, freqs, coh, line_freq, path)
 	% coh: coherence of the data, corresponding to freqs
 	% line_freq: the frequency of the line to mark in the plot
 	% path: where the plot is saved, down to /channel.jpg
-
+	% Duo Tao, 2/26/2018
+	
 	% init the figure
 	figure1 = figure;
 	set(figure1, 'Visible', 'off');

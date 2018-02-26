@@ -1,5 +1,7 @@
 classdef Search
 	% Search configurations
+	% Duo Tao, 2/26/2018
+	
 	properties
 		zoom, % the x-axis range of the plot, centerd at the single line. One-sided.
 		filter, % log p-value thresold

@@ -1,5 +1,6 @@
 classdef Line
 	% Line configurations
+	% Duo Tao, 2/26/2018
 	properties
 		line, % frequency of the line in Hz
         run, % the LIGO run of the line when it is found

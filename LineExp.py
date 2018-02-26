@@ -1,3 +1,9 @@
+# Script to generate html from the search search results
+# Duo Tao, 2/26/2018
+# args[1] : path to the lines folder
+# args[2] : source of the lines, ignore if no source
+
+
 import sys
 import os
 import datetime

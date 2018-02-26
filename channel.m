@@ -2,9 +2,10 @@ function channel(data_path, search, line, output_path)
 	% Search for a line in a channel at data_path
 	% data_path: the path to the mat file
 	% search: configurations of this search (high / low /filter)
-	% comb: parameters of the comb
+	% line: parameters of the line
 	% output_path: the output path down to the jpg image
-
+    % Duo Tao, 2/26/2018
+    
 	freqs = [];
 	coh = [];
 	load(data_path);
