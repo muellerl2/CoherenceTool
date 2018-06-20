@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\title{Instructions for LIGO Line Coherence Tools}
+\date{\today}
+\author{Geoffrey Mo, Carleton College\\mog@carleton.edu}
+
+\maketitle
+
+These are instructions for setting up and running the tools necessary for the analysis of spectral artifact (lines) coherence. These tools were largely written by Duo Tao at Carleton College under the supervision of Professor Nelson Christensen. 
+
+\section*{Setup}
+\subsection*{LIGO Data Grid Setup}
+\begin{enumerate}
+	\item Register for a LIGO Data Grid (LDG) account at \url{https://grouper.ligo.org/ldg/}. These requests are manually approved, so it may take a few days.
+	\item Install the LDG tools available at \url{https://www.lsc-group.phys.uwm.edu/lscdatagrid/doc/installclient.html}.
+	\item In the command line, type {\tt ligo-proxy-init albert.einstein} to get a certificate for the grid. Remember to replace {\tt albert.einstein} with your LSC username. This ``logs you in." The certificate will last about 11 days before you need to request another one.
+	\item You are now ready to use the LIGO Data Grid!
+\end{enumerate}
+
+\subsection*{Line Coherence Tools Setup}
+\begin{enumerate}
+	\item First, you'll need to login to an LDG server. For this example, I'll use the Livingston server (LA) located at {\tt ldas-pcdev1.ligo-la.caltech.edu}.\footnote{The Hanford (HA) server is {\tt ldas-pcdev1.ligo-wa.caltech.edu} and the Caltech server is {\tt ldas-grid.ligo.caltech.edu}.} To ssh to the server, type {\tt gsissh ldas-pcdev1.ligo-la.caltech.edu}.
+	\item To get the tool onto your account on the server, use {\tt  git clone \break http://github.com/taoduo/CoherenceTool}. This will copy the tool to the home directory of your account on the LA server.
+	\item While we are in the home directory, we will make one more directory which will become useful. Use {\tt mkdir public\_html} to make this directory.
+    \item In running the Matlab tool, {\tt main.m} will be the program which calls all the other programs. Using the text editor of your choice (vim, etc) open main.m. Change the {\tt albert.einstein} in {\tt output\_path} to your username.
+
+The {\tt filter} parameter changes how ``sensitive" the tool is; since the tool sorts line frequency coherences in a Gaussian distribution, the filter ensures that only lines in the tail of the distribution past $10^{\tt filter}$ show up. Experiment with this if your results do not seem complete, or if the script returns too many results. Put the frequencies of the lines you are searching for in the {\tt lines} list.
+
+To quit vim, press {\tt esc}, then type {\tt :wq} (for ``write'' and ``quit'').
+\end{enumerate}
+
+
+\lstset{language=html}
+
+\section*{Preparing to display the results}
+\begin{enumerate}
+	\item To view these plots, we will create a webpage viewable in a web browser. First, navigate to {\tt /public\_html}. Then, use {\tt touch index.html} to create an html file.
+    \item Use {\tt vim index.html} to open the file in vim (or equivalent text editor). Then, paste in the following code:
+	\begin{lstlisting}
+<!DOCTYPE html>
+<html>
+<head>
+<link 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        crossorigin="anonymous">
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous">
+</script>
+<script 
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
+<title>Line Search Results with Coherence Tool</title>
+</head>
+<body>
+<header>
+<h1>Coherence Search Results</h1>
+<hr>
+</header>
+<div class='container'>
+<div class='row'>
+<div class='col-md-4'>
+<ul>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
+	\end{lstlisting}
+Remember to type {\tt :wq} to save and exit vim. This code will create an html page at \url{https://ldas-jobs.ligo-la.caltech.edu/~albert.einstein/}\footnote{...ldas-jobs.ligo-ha.caltech.edu... for Hanford} which can be viewed in your web browser.
+\end{enumerate}
+
+\section*{Operating the tool}
+\begin{enumerate}
+  \item Once your {\tt main.m} file is configured as you would like, run {\tt line\_search.sh} by typing {\tt ./line\_search.sh} into the terminal. Depending on how many lines the program is searching for, it will run for up to 12 or so hours. If you would like this process to run in the background so you can close your command line window and step away from the computer, do step 1 in the window opened by the command {\tt screen}.
+	
+\item Now, on your webpage \url{https://ldas-jobs.ligo-la.caltech.edu/~albert.einstein/}, you should find a link leading to a graphical display of the data, organized by day. Each plot in the day corresponds to a line with a specific coherence to a dataset. To understand which dataset it is, reference the title of the plot with the LIGO abbreviations and acronyms dictionary found here: \url{https://dcc.ligo.org/public/0002/M080375/012/LIGO-M080375-V12\%20(Abbreviations\%20And\%20Acronyms).pdf}.
+\end{enumerate}
+
+Congratulations! You've just mined the data for line coherences!
+
+\end{document}
