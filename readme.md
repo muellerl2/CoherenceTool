@@ -1,7 +1,8 @@
-This module search for a line in data of all weeks.
-To use, call
+This module searches for a line in data of all weeks.
 
-1. To use, call
+See instructions in /doc/ to run the coherence line search.
+
+1. To use each individual function, call
 function multiple_line_search(data_path, search, lines, output_path)
 	* data_path: the path that contains all weeks folder (should be structured as weekfolder/"data"/matfiles)
 	* search: An object of the Search class containing information about the searching parameters, check Search.m for details.
