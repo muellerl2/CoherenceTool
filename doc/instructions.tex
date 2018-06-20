@@ -48,7 +48,7 @@ These are instructions for setting up and running the tools necessary for the an
 	\item First, you'll need to login to an LDG server. For this example, I'll use the Livingston server (LA) located at {\tt ldas-pcdev1.ligo-la.caltech.edu}.\footnote{The Hanford (HA) server is {\tt ldas-pcdev1.ligo-wa.caltech.edu} and the Caltech server is {\tt ldas-grid.ligo.caltech.edu}.} To ssh to the server, type {\tt gsissh ldas-pcdev1.ligo-la.caltech.edu}.
 	\item To get the tool onto your account on the server, use {\tt  git clone \break http://github.com/taoduo/CoherenceTool}. This will copy the tool to the home directory of your account on the LA server.
 	\item While we are in the home directory, we will make one more directory which will become useful. Use {\tt mkdir public\_html} to make this directory.
-    \item In running the Matlab tool, {\tt main.m} will be the program which calls all the other programs. Using the text editor of your choice (vim, etc) open main.m. Change the {\tt albert.einstein} in {\tt output\_path} to your username.
+    \item In running the Matlab tool, {\tt main.m} will be the program which calls all the other programs. Using the text editor of your choice (vim, etc) open {\tt main\_example.m} and copy it into a file named {\tt main.m}. Change the {\tt albert.einstein} in {\tt output\_path} to your username.
 
 The {\tt filter} parameter changes how ``sensitive" the tool is; since the tool sorts line frequency coherences in a Gaussian distribution, the filter ensures that only lines in the tail of the distribution past $10^{\tt filter}$ show up. Experiment with this if your results do not seem complete, or if the script returns too many results. Put the frequencies of the lines you are searching for in the {\tt lines} list.
 
