@@ -186,7 +186,7 @@ def writehead(f, run, observatory, weeks, line, source):
         For example, a occurrence of uncertainty 10<sup>-45</sup> will contribute a significance of 45 to the sum.</em><br>')
     f.write('          <em>- The numbers in the parenthesis after the channels are the significance of that occurrence of the line. </em><br>')
     now = datetime.datetime.now()
-    f.write('          <em>- This is produced by Duo Tao at ' + str(now.year) + '-' + str(now.month) + '-' + str(now.day) +  '. Contact Duo if there are any questions, problems or suggestions.</em>')
+    f.write('          <em>- This was produced by Geoffrey Mo at ' + str(now.year) + '-' + str(now.month) + '-' + str(now.day) +  '. Contact Geoffrey if you have any questions, problems or suggestions.</em>')
     f.write('        </div>')
     f.write('        <div class="modal-footer">')
     f.write('           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>')
